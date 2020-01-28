@@ -9,5 +9,6 @@ import com.bdi.sb.vo.UserInfoVo;
 
 @MapperScan
 public interface UserInfoMapper {
-	public List<UserInfoVo> selectUserInfoList(UserInfoVo ui);
+	public List<UserInfoVo> selectUserInfoList(UserInfoVo uv);
+	public int insertUserInfo(UserInfoVo uv);
 }

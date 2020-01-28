@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 public class ViewController {
-	@GetMapping("/**")
+	@GetMapping("/*")
 	public String goPage(HttpServletRequest req) {
 		return req.getRequestURI();
 	}
 	
-	@GetMapping("/")
+	@GetMapping("/view")
 	public String home() {
-		return "/front/index";
+		return "/index";
 	}
 }

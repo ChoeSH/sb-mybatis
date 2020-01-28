@@ -5,11 +5,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <script src="/static/js/jquery-3.4.1.js"></script>
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css"/>
+<title>Insert title here</title>
 </head>
+<style>
+table{
+top:30%;
+left:40%;
+position: absolute;
+margin:0 auto;
+}
+</style>
 <body>
 <table border="1">
 <tr>
@@ -25,7 +34,7 @@
 <td><textarea name="tiEtc" id="tiEtc" maxlength="1000"></textarea></td>
 </tr>
 <tr>
-<th colspan="2"><button id="insert">입력</button></th>
+<td colspan="2" align='center'><button id="insert">입력</button></td>
 </tr>
 </table>
 <script>
@@ -39,13 +48,24 @@ $(document).ready(function(){
 			alert('주소는 10글자 이상입니다.');
 			return false;
 		}
-		var data = {
-				 tiName : $('#tiName').val(),
-				 tiAddr : $('#tiAddr').val(),
-				 tiEtc : $('#tiEtc').val()
-		 }
+		var param = 'tiName=' + $('#tiName').val();
+		param += '&tiAddr=' + $('#tiAddr').val();
+		param += '&tiEtc=' + $('#tiEtc').val();
+		$.ajax({
+			url:'/insert',
+			method:'POST',
+			data:param,
+			success:function(res){
+				param = JSON.stringify(param);
+				console.log(res);
+				alert('성공');
+			},
+			error:function(){
+				alert(error);
+			}
+		})
 	})
-})
+});
 </script>
 </body>
 </html>
